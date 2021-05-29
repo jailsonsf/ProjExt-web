@@ -6,7 +6,6 @@ Uma aplicação que permite ao usuário gerenciar os livros que está lendo ou q
 - [ ] Adicionar um novo livro
   - [ ] Nome do livro
   - [ ] Descrição sobre o livro
-  - [ ] Autor
 - [ ] Ver informações de um livro cadastrado
 - [ ] Editar informações de um livro cadastrado
 - [ ] Remover um livro adicionado
@@ -30,7 +29,34 @@ Uma aplicação que permite ao usuário gerenciar os livros que está lendo ou q
 </p>
 
 ## Preparando o ambiente
-
+Para projetos python o recomendável é utilizar uma venv para organizar as dependências do projeto. Para criar um ambiente virtual python:
+```bash
+python -m venv env
+```
+Após criar o ambiente virtual basta ativar
+```bash
+env\Scripts\activate
+```
 ### Instalando dependências
-
+Agora vamos instalar as dependências do projeto, mas primeiro vamos atualizar o pip do ambiente virtual:
+```bash
+python -m pip install --upgrade pip
+```
+Após atualizar o pip vamos instalar as dependências assim:
+```bash
+pip install -r requirements.txt
+```
 ### Executando o projeto
+Agora vamos entrar no diretório principal
+```bash
+cd backend/
+```
+E vamos realizar as migrações:
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+Com as migrações feitas podemos executar o nosso servidor com o seguinte comando:
+```bash
+python manage.py runserver
+```
