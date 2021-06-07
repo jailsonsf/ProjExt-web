@@ -31,16 +31,16 @@ Uma aplicação que permite ao usuário gerenciar os livros que está lendo ou q
 ## Preparando o ambiente
 Para projetos python o recomendável é utilizar uma venv para organizar as dependências do projeto. Para criar um ambiente virtual python:
 ```bash
-python -m venv env
+python3 -m venv env
 ```
 Após criar o ambiente virtual basta ativar
 ```bash
-env\Scripts\activate
+env/bin/activate
 ```
 ### Instalando dependências
 Agora vamos instalar as dependências do projeto, mas primeiro vamos atualizar o pip do ambiente virtual:
 ```bash
-python -m pip install --upgrade pip
+python3 -m pip install --upgrade pip
 ```
 Após atualizar o pip vamos instalar as dependências assim:
 ```bash
@@ -53,7 +53,6 @@ cd backend/
 ```
 E vamos realizar as migrações:
 ```bash
-python manage.py makemigrations
 python manage.py migrate
 ```
 Com as migrações feitas podemos executar o nosso servidor com o seguinte comando:

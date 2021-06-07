@@ -4,14 +4,14 @@ services:
     db:
         image: postgres:12
         volumes:
-            - ./data/db:var/lib/postgresql/data
+            - /data:/data
         environment:
             - POSTGRES_DB=postgres
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=projextweb
     web:
         build: .
-        command: python manage.py runserver 0.0.0.0:8000
+        command: python backend/manage.py runserver 0.0.0.0:8000
         volumes: 
             - .:/backend
         ports: 
