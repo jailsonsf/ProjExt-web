@@ -1,8 +1,15 @@
-__pycache__
-env/
+# vue project
+frontend
 
+# vscode
 .vscode
 
-.git/
-.github/
+# python
+__pycache__
+venv
+env
+
+# Git
+.git
+.github
 .gitignore
