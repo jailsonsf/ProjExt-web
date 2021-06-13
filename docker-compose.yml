@@ -5,6 +5,8 @@ services:
         image: postgres:12
         volumes:
             - /data:/data
+        ports:
+            - "5432:5432"
         environment:
             - POSTGRES_DB=postgres
             - POSTGRES_USER=postgres
@@ -18,3 +20,4 @@ services:
             - "8000:8000"
         depends_on: 
             - db
+
