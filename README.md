@@ -29,33 +29,43 @@ Uma aplicação que permite ao usuário gerenciar os livros que está lendo ou q
 </p>
 
 ## Preparando o ambiente
-Para projetos python o recomendável é utilizar uma venv para organizar as dependências do projeto. Para criar um ambiente virtual python:
+Nesse projeto usamos o docker. Para tudo funcionar como devia precisamos criar uma variável de ambiente chamada `.env` seguindo o mesmo padrão do arquivo `env.example`, então vamos copiar o conteúdo do exemplo para o arquivo principal:
 ```bash
-python3 -m venv env
+cp env.example .env
 ```
-Após criar o ambiente virtual basta ativar
+Agora o arquivo `.env` deve ter o seguinte conteúdo:
+```
+POSTGRES_DB=YOUR_DB_NAME
+POSTGRES_USER=YOUR_USER
+POSTGRES_PASSWORD=YOUR_PASSWORD
+POSTGRES_HOST=YOUR_HOST
+POSTGRES_PORT=YOUR_PORT
+```
+Com isso basta substituir pelas informações corretas para o seu ambiente de desenvolvimento.
+
+## Usando o docker
+Vamos usar o docker compose para orquestrar nossos containers.
+
+Temos dois containers, um para o PostgreSQL chamado de `db` e outro para o Django chamado de `web`.
+
+Para executar eles vamos usar o docker compose, podemos usar o seguinte comando na raiz do projeto:
 ```bash
-env/bin/activate
+docker-compose up
 ```
-### Instalando dependências
-Agora vamos instalar as dependências do projeto, mas primeiro vamos atualizar o pip do ambiente virtual:
+O comando acima irá executar o container `db` e em seguida o container `web`.
+
+Porém nossa api ainda não estará funcionando já que não fizemos as migrations no nosso container.
+
+Para isso precisamos da id do nosso container. vamos conseguir elas usando o comando:
 ```bash
-python3 -m pip install --upgrade pip
+docker container ps
 ```
-Após atualizar o pip vamos instalar as dependências assim:
+Agora vamos procurar o id do container projext-web_web. E com ele vamos executar o comando substituindo CONTAINER_ID pelo id que conseguimos anteriormente:
 ```bash
-pip install -r requirements.txt
+docker exec -it CONTAINER_ID /bin/sh
 ```
-### Executando o projeto
-Agora vamos entrar no diretório principal
+Agora vamos fazer as migrações:
 ```bash
-cd backend/
+python backend/manage.py runserver
 ```
-E vamos realizar as migrações:
-```bash
-python manage.py migrate
-```
-Com as migrações feitas podemos executar o nosso servidor com o seguinte comando:
-```bash
-python manage.py runserver
-```
+Com isso nosso projeto deve estar rodando normalmente.
