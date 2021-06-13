@@ -20,7 +20,7 @@ from rest_framework import routers
 from mybooks import views as mybooks_views
 from authentication import views as auth_views
 
-router = routers.SimpleRouter()
+router = routers.DefaultRouter()
 
 router.register(r'books', mybooks_views.BookViewSet)
 
