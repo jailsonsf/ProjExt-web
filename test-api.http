@@ -1,0 +1,31 @@
+# Create user
+POST http://127.0.0.1:8000/api/users/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "teste",
+    "email": "teste@email.com",
+    "password": "teste"
+}
+
+###
+
+# Get all books
+GET http://127.0.0.1:8000/api/books/ HTTP/1.1
+
+###
+
+# Get one book
+GET http://127.0.0.1:8000/api/books/1 HTTP/1.1
+
+###
+
+# Add book
+POST http://127.0.0.1:8000/api/books/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "teste",
+    "description": "teste create book",
+    "user": 1
+}
