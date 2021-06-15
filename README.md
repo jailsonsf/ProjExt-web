@@ -66,6 +66,6 @@ docker exec -it CONTAINER_ID /bin/sh
 ```
 Agora vamos fazer as migrações:
 ```bash
-python backend/manage.py runserver
+python backend/manage.py migrate
 ```
-Com isso nosso projeto deve estar rodando normalmente.
+Com isso nosso projeto deve estar rodando normalmente ao executar o nosso docker compose.

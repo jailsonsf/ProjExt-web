@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import os
+from os import environ
 from pathlib import Path
 
 import psycopg2
@@ -27,12 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(lh#g65@p)f_g38gw4dn!)jaep$6j(nos==0dq-p8c1$yt8&j@'
+SECRET_KEY = environ['BACKEND_SECRET_KEY']
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True
 
-ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -46,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'mybooks',
     'authentication',
 ]
@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -83,17 +84,30 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+if (environ['BACKEND_PRODUCTION'] == True):
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = False
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ['POSTGRES_DB'],
-        'USER': os.environ['POSTGRES_USER'],
-        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
-        'HOST': os.environ['POSTGRES_HOST'],
-        'PORT': os.environ['POSTGRES_PORT'],
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': environ['BACKEND_DATABASE_NAME'],
+            'USER': environ['BACKEND_DATABASE_USER'],
+            'PASSWORD': environ['BACKEND_DATABASE_PASSWORD'],
+            'HOST': environ['BACKEND_DATABASE_HOST'],
+            'PORT': environ['BACKEND_DATABASE_PORT'],
+        }
     }
-}
+else:
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': './backend/db.sqlite3',
+        }
+    }
 
 
 # Password validation
