@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if (environ['BACKEND_PRODUCTION'] == True):
+if (environ['BACKEND_PRODUCTION'] == 'TRUE'):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = False
 
@@ -105,7 +105,7 @@ if (environ['BACKEND_PRODUCTION'] == True):
             'PORT': environ['BACKEND_DATABASE_PORT'],
         }
     }
-elif (environ['BACKEND_PRODUCTION'] == False):
+else:
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
     
