@@ -14,6 +14,8 @@ jobs:
           pip install -r requirements.txt
       - name: Fazer migracoes
         working-directory: ./backend
+        env:
+          BACKEND_SECRET_KEY: ${{ secrets.BACKEND_SECRET_KEY }}
         run: python manage.py migrate
       - name: Rodar testes
         working-directory: ./backend
