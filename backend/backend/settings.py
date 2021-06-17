@@ -29,15 +29,13 @@ STATICFILES_DIRS = [
     path.join(BASE_DIR, "static"),
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = environ['BACKEND_SECRET_KEY']
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', '.herokuapp.com']
 CORS_ORIGIN_ALLOW_ALL = True
 
 
@@ -93,7 +91,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if (environ['BACKEND_PRODUCTION'] == True):
+if (environ['BACKEND_PRODUCTION'] == 'TRUE'):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = False
 
