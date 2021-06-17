@@ -105,7 +105,7 @@ if (environ['BACKEND_PRODUCTION'] == True):
             'PORT': environ['BACKEND_DATABASE_PORT'],
         }
     }
-else:
+elif (environ['BACKEND_PRODUCTION'] == False):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
     
