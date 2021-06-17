@@ -5,6 +5,9 @@ on: [push]
 jobs:
   django_tests:
     runs-on: ubuntu-latest
+    env:
+      BACKEND_SECRET_KEY: ${{ secrets.BACKEND_SECRET_KEY }}
+      BACKEND_PRODUCTION: ${{ secrets.BACKEND_PRODUCTION }}
     container:
       image: python:3
     steps:
@@ -14,8 +17,6 @@ jobs:
           pip install -r requirements.txt
       - name: Fazer migracoes
         working-directory: ./backend
-        env:
-          BACKEND_SECRET_KEY: ${{ secrets.BACKEND_SECRET_KEY }}
         run: python manage.py migrate
       - name: Rodar testes
         working-directory: ./backend
