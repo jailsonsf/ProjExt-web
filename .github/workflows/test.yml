@@ -1,0 +1,22 @@
+name: Django Unit Test
+
+on: [push]
+
+jobs:
+  django_tests:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3
+    steps:
+      - uses: actions/checkout@v2
+      - name: Instalar dependencias com o pip
+        run: pip install --upgrade
+          pip install -r requirements.txt
+      - name: Fazer migracoes
+        working-directory: ./backend
+        env:
+          BACKEND_SECRET_KEY: ${{ secrets.BACKEND_SECRET_KEY }}
+        run: python manage.py migrate
+      - name: Rodar testes
+        working-directory: ./backend
+        run: python manage.py test --noinput
