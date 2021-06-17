@@ -35,7 +35,7 @@ STATICFILES_DIRS = [
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = environ['BACKEND_SECRET_KEY']
 
-ALLOWED_HOSTS = [environ['SERVER'], '.herokuapp.com']
+ALLOWED_HOSTS = ['*', '.herokuapp.com']
 CORS_ORIGIN_ALLOW_ALL = True
 
 
