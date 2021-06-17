@@ -8,12 +8,12 @@ services:
         ports:
             - "5432:5432"
         environment:
-            - POSTGRES_DB=postgres
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=projextweb
+            - POSTGRES_DB=${BACKEND_DATABASE_NAME}
+            - POSTGRES_USER=${BACKEND_DATABASE_USER}
+            - POSTGRES_PASSWORD=${BACKEND_DATABASE_PASSWORD}
     web:
         build: .
-        command: python backend/manage.py runserver 0.0.0.0:8000
+        command: python manage.py runserver 0.0.0.0:8000
         volumes: 
             - .:/backend
         ports: 
