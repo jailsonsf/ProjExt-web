@@ -1,6 +1,7 @@
 <template>
   <v-container v-on:click="detailBook">
     <h1>{{ item.title }}</h1>
+    <span>{{ item.description }}</span>
   </v-container>
 </template>
 

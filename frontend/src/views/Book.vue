@@ -4,12 +4,17 @@
 
     <v-space></v-space>
 
-    <span>Description</span>
+    <span> Description</span>
   </v-container>
 </template>
 
 <script>
-export default {};
+export default {
+  beforeCreate() {
+    let idCurretnBook = this.$store.state.booksStore.currentBook;
+    alert(idCurretnBook);
+  },
+};
 </script>
 
 <style>
