@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 let api = axios.create({
-    baseURL: process.env.BASE_URL,
+    baseURL: "http://0.0.0.0:7000/api",
     timeout: 1000,
     headers: {}
 })

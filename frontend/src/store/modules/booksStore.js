@@ -1,26 +1,27 @@
-import getAllBooks from '../../services/book.service'
+import { getAllBooks, getBookDetails } from '../../services/book.service'
 
 const booksStore = {
     state: {
-        books = [],
-        currentBook = null,
+        books: [],
+        currentBook: null,
     },
-      mutations: {
-        SET_BOOKS(state, books) {
-          state.books = books
-        },
-        SET_CURRENT_BOOK(state, idBook) {
-            state.currentBook = idBook
-        }
+    mutations: {
+      SET_BOOKS(state, books) {
+        state.books = books
+      },
+      SET_CURRENT_BOOK(state, idBook) {
+          state.currentBook = idBook
+      }
     },
-      actions: {
-        async loadingBooks({ commit }){
-          const resp = await getAllBooks()
-          commit("SET_BOOKS", resp.data)
-        },
-        setCurrentBook({ commit }, idBook) {
-
-        }
+    actions: {
+      async loadingBooks({ commit }){
+        const resp = await getAllBooks()
+        commit("SET_BOOKS", resp.data)
+      },
+      async setCurrentBook({ commit }, idBook) {
+        const resp = await getBookDetails(idBook)
+        commit('SET_CURRENT_BOOK', resp.data)
+      }
     },
 }
 
