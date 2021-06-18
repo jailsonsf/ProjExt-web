@@ -1,7 +1,6 @@
 <template>
   <v-container v-on:click="detailBook">
     <h1>{{ item.title }}</h1>
-    <span>{{ item.description }}</span>
   </v-container>
 </template>
 
@@ -12,8 +11,10 @@ export default {
   data: () => ({}),
   methods: {
     detailBook() {
-      this.$store.dispatch("setCurrentBook", this.item.id);
-      this.$router.push({ name: "book" });
+      this.$store.dispatch("setCurrentBook", this.item.id).then((e) => {
+        console.log(e.status);
+        this.$router.push({ name: "book" });
+      });
     },
   },
 };

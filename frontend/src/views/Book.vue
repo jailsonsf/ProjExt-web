@@ -1,18 +1,17 @@
 <template>
   <v-container>
-    <h1>Title</h1>
+    <h1>{{ this.currentBook.title }}</h1>
 
-    <v-space></v-space>
+    <v-spacer></v-spacer>
 
-    <span> Description</span>
+    <span>{{ this.currentBook.description }}</span>
   </v-container>
 </template>
 
 <script>
 export default {
-  beforeCreate() {
-    let idCurretnBook = this.$store.state.booksStore.currentBook;
-    alert(idCurretnBook);
+  created() {
+    this.currentBook = this.$store.state.booksStore.currentBook;
   },
 };
 </script>

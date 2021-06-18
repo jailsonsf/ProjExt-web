@@ -21,6 +21,8 @@ const booksStore = {
       async setCurrentBook({ commit }, idBook) {
         var resp = await getBookDetails(idBook)
         commit('SET_CURRENT_BOOK', resp.data)
+
+        return resp
       },
       async createBook({ commit }, book, userId) {
         let resp = await postBook(book, userId)
