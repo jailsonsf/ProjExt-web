@@ -2,15 +2,13 @@
 ## Gerenciador de livros
 Uma aplicação que permite ao usuário gerenciar os livros que está lendo ou que já leu.
 ## Funcionalidades pretendidas
-- [ ] Login / Logout
-- [ ] Adicionar um novo livro
-  - [ ] Nome do livro
-  - [ ] Descrição sobre o livro
-- [ ] Ver informações de um livro cadastrado
-- [ ] Editar informações de um livro cadastrado
-- [ ] Remover um livro adicionado
-- [ ] Ver uma lista com todos os livros adicionados pelo usuário
-- [ ] Ver livros por gênero/categoria
+- [x] Adicionar um novo livro
+  - [x] Nome do livro
+  - [x] Descrição sobre o livro
+- [x] Ver informações de um livro cadastrado
+- [x] Editar informações de um livro cadastrado
+- [x] Remover um livro adicionado
+- [x] Ver uma lista com todos os livros adicionados pelo usuário
 
 ## Tecnologias usadas
 <p align='center'>
