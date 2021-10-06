@@ -24,24 +24,39 @@ Uma aplicação que permite ao usuário gerenciar os livros que está lendo ou q
     <a href="https://www.docker.com/">
         <img src='https://img.shields.io/badge/docker-2496ED?logo=docker&logoColor=white&style=for-the-badge' />
     </a>
+    <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript">
+        <img src='https://img.shields.io/badge/javascript-F7DF1E?logo=javascript&logoColor=white&style=for-the-badge'>
+    </a>
+    <a href="https://vuejs.org/">
+        <img src='https://img.shields.io/badge/vuejs-4FC08D?logo=vue.js&logoColor=white&style=for-the-badge'>
+    </a>
 </p>
 
 ## Preparando o ambiente
+
+## Backend
+Para executar o projeto backend vamos entrar na pasta backend:
+```bash
+cd backend
+```
+
 Nesse projeto usamos o docker. Para tudo funcionar como devia precisamos criar uma variável de ambiente chamada `.env` seguindo o mesmo padrão do arquivo `env.example`, então vamos copiar o conteúdo do exemplo para o arquivo principal:
 ```bash
 cp env.example .env
 ```
 Agora o arquivo `.env` deve ter o seguinte conteúdo:
 ```
-POSTGRES_DB=YOUR_DB_NAME
-POSTGRES_USER=YOUR_USER
-POSTGRES_PASSWORD=YOUR_PASSWORD
-POSTGRES_HOST=YOUR_HOST
-POSTGRES_PORT=YOUR_PORT
+BACKEND_PRODUCTION=False
+BACKEND_SECRET_KEY=YOUR_SECRET_KEY
+BACKEND_DATABASE_NAME=YOUR_DB_NAME
+BACKEND_DATABASE_USER=YOUR_DB_USER
+BACKEND_DATABASE_PASSWORD=YOUR_DB_PASSWORD
+BACKEND_DATABASE_HOST=YOUR_DB_HOST
+BACKEND_DATABASE_PORT=YOUR_DB_PORT
 ```
 Com isso basta substituir pelas informações corretas para o seu ambiente de desenvolvimento.
 
-## Usando o docker
+### Usando o docker
 Vamos usar o docker compose para orquestrar nossos containers.
 
 Temos dois containers, um para o PostgreSQL chamado de `db` e outro para o Django chamado de `web`.
@@ -67,3 +82,27 @@ Agora vamos fazer as migrações:
 python backend/manage.py migrate
 ```
 Com isso nosso projeto deve estar rodando normalmente ao executar o nosso docker compose.
+
+## Frontend
+Para executar o projeto frontend vamos entrar na pasta frontend:
+```bash
+cd frontend
+```
+
+Agora vamos instalar as dependências:
+```bash
+# npm
+npm install
+
+# yarn
+yarn
+```
+
+Após instalar vamos executar o server
+```bash
+# npm
+npm run serve
+
+# yarn
+yarn serve
+```

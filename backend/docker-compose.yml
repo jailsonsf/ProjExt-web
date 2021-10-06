@@ -13,11 +13,11 @@ services:
             - POSTGRES_PASSWORD=${BACKEND_DATABASE_PASSWORD}
     web:
         build: .
-        command: python manage.py runserver 0.0.0.0:8000
+        command: python manage.py runserver 0.0.0.0:7000
         volumes: 
             - .:/backend
         ports: 
-            - "8000:8000"
+            - "7000:7000"
         depends_on: 
             - db
 
